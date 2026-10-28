@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e8f1e8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Little Moments">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-512.png">
+<title>Little Moments</title>
+<style>
+:root{--bg:#f7f6ef;--card:#fffefa;--ink:#294d40;--muted:#71857a;--mint:#e5efe5;--green:#477660;--gold:#e6b85c;--line:#e4e9df;--rose:#f8e8e4;--shadow:0 8px 24px #244b3b0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:22px 18px 16px;background:linear-gradient(135deg,#e8f1e8,#fff8e9);border-radius:0 0 28px 28px}
+.brand{display:flex;gap:12px;align-items:center}.brand img{width:58px;height:58px;border-radius:17px;object-fit:cover;box-shadow:var(--shadow)}h1{font-size:24px;margin:0;font-weight:750;letter-spacing:-.5px}.sub{color:var(--muted);font-size:13px}
+main{max-width:760px;margin:auto;padding:16px 14px 96px}.section-title{font-size:18px;margin:22px 2px 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:15px;margin-bottom:12px;box-shadow:var(--shadow)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f3f7f0;border-radius:15px;padding:12px 9px;min-width:0}.stat b{display:block;font-size:20px}.stat span{font-size:12px;color:var(--muted)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.quick button{min-height:78px;border:1px solid var(--line);background:#fffefa;border-radius:16px;color:var(--ink);font-size:13px;font-weight:650;padding:10px 5px}.emoji{display:block;font-size:23px;margin-bottom:4px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffefaf2;backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:4px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:4}
+nav button{border:0;background:transparent;color:var(--muted);padding:8px 12px;border-radius:13px;font-size:12px;flex:1;max-width:150px}nav button.active{background:var(--mint);color:var(--ink);font-weight:700}
+label{display:block;font-size:13px;color:var(--muted);margin:12px 0 5px}input,select,textarea{font:inherit;color:var(--ink);background:white;border:1px solid #dce4da;border-radius:12px;padding:11px;width:100%;min-height:44px}textarea{min-height:80px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:0;border-radius:13px;padding:12px 15px;background:var(--green);color:white;font:inherit;font-weight:700;margin-top:13px;cursor:pointer}.btn.secondary{background:var(--mint);color:var(--ink)}.btn.danger{background:#f8e8e4;color:#9c4537}.btn.full{width:100%}
+.item{padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.itemtop{display:flex;justify-content:space-between;gap:12px}.item small{color:var(--muted)}.pill{font-size:11px;border-radius:20px;padding:4px 8px;background:var(--mint);white-space:nowrap}
+.hidden{display:none!important}.empty{padding:22px 8px;text-align:center;color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin-top:8px}.customrow{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}.smallbtn{border:0;background:var(--mint);color:var(--ink);border-radius:9px;padding:7px 9px}
+@media(min-width:600px){main{padding-top:24px}.quick{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand"><img src="./icon-512.png" alt=""><div><h1>Little Moments</h1><div class="sub">Track · Grow · Cherish</div></div></div></header>
+<main>
+<section id="home">
+  <div class="section-title">Your little one's day</div>
+  <div class="card">
+    <div class="row">
+      <div><label for="babyName">Baby's name</label><input id="babyName" placeholder="Enter baby's name"></div>
+      <div><label for="dob">Date of birth</label><input id="dob" type="date"></div>
+    </div>
+    <button class="btn" onclick="saveProfile()">Save profile</button>
+    <div class="hint" id="ageText">Add a date of birth to calculate age automatically.</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="latestWeight">—</b><span>Latest weight</span></div>
+    <div class="stat"><b id="latestHeight">—</b><span>Latest height</span></div>
+    <div class="stat"><b id="todayCount">0</b><span>Today's logs</span></div>
+  </div>
+  <div class="section-title">Quick add</div>
+  <div class="quick">
+    <button onclick="openLog('Feed')"><span class="emoji">🍼</span>Feed</button>
+    <button onclick="openLog('Diaper')"><span class="emoji">🧷</span>Diaper</button>
+    <button onclick="openLog('Medicine')"><span class="emoji">💊</span>Medicine</button>
+    <button onclick="openLog('Bath')"><span class="emoji">🛁</span>Bath</button>
+    <button onclick="openLog('Measurement')"><span class="emoji">📏</span>Measure</button>
+    <button onclick="showTab('custom')"><span class="emoji">＋</span>Custom</button>
+  </div>
+  <div class="section-title">Recent activity</div><div class="card" id="recent"></div>
+</section>
+<section id="log" class="hidden">
+  <div class="section-title">Add a daily entry</div>
+  <div class="card">
+    <label for="logType">What would you like to record?</label><select id="logType" onchange="updateLogFields()"><option>Feed</option><option>Diaper</option><option>Medicine</option><option>Bath</option><option>Measurement</option></select>
+    <div class="row"><div><label for="logDate">Date</label><input id="logDate" type="date"></div><div><label for="logTime">Time</label><input id="logTime" type="time"></div></div>
+    <div id="dynamicFields"></div>
+    <label for="logNotes">Notes (optional)</label><textarea id="logNotes" placeholder="Anything else to remember?"></textarea>
+    <button class="btn full" onclick="saveLog()">Save entry</button>
+  </div>
+  <div class="section-title">All entries</div><div class="card" id="allLogs"></div>
+</section>
+<section id="growth" class="hidden">
+  <div class="section-title">Growth history</div>
+  <div class="card"><p class="hint">Record measurements with the date. The app will show your saved history; growth percentiles can be added in a later version.</p><div id="growthList"></div></div>
+</section>
+<section id="custom" class="hidden">
+  <div class="section-title">Make Little Moments your own</div>
+  <div class="card">
+    <label for="customName">New field name</label><input id="customName" placeholder="e.g. Tummy time, temperature, sleep">
+    <label for="customType">Field type</label><select id="customType"><option value="text">Text or notes</option><option value="number">Number</option><option value="duration">Duration (minutes)</option><option value="yesno">Yes / No</option><option value="choice">Choose from a list</option><option value="datetime">Date and time</option></select>
+    <div id="customExtra"></div>
+    <button class="btn full" onclick="addCustomField()">Add custom field</button>
+  </div>
+  <div class="section-title">Your custom fields</div><div class="card" id="customList"></div>
+</section>
+<section id="settings" class="hidden">
+  <div class="section-title">Your data & settings</div>
+  <div class="card"><p><b>Saved on this device</b></p><p class="hint">This starter version stores records in this browser on this device. Clearing Safari website data may erase them. Export a backup regularly.</p>
+  <button class="btn full" onclick="exportData()">Export backup (JSON)</button>
+  <label for="importFile">Restore from a backup</label><input id="importFile" type="file" accept="application/json" onchange="importData(event)">
+  <button class="btn secondary full" onclick="downloadCSV()">Export daily entries (CSV)</button>
+  <button class="btn danger full" onclick="clearData()">Delete all app data</button></div>
+  <div class="card"><b>Coming next</b><p class="hint">Scheduled reminders, charts, optional cloud backup, and a refined installable app icon. Medication reminders should follow your clinician's instructions.</p></div>
+</section>
+</main>
+<nav>
+<button class="active" data-tab="home" onclick="showTab('home')">⌂<br>Home</button>
+<button data-tab="log" onclick="showTab('log')">＋<br>Daily log</button>
+<button data-tab="growth" onclick="showTab('growth')">↗<br>Growth</button>
+<button data-tab="custom" onclick="showTab('custom')">☷<br>Custom</button>
+<button data-tab="settings" onclick="showTab('settings')">⚙<br>Settings</button>
+</nav>
+<script>
+const KEY='littleMomentsV1';
+let data={profile:{name:'',dob:''},logs:[],customFields:[]};
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toLocaleDateString('en-CA');
+function load(){try{const saved=localStorage.getItem(KEY);if(saved)data={...data,...JSON.parse(saved)}}catch(e){}; $('babyName').value=data.profile.name||'';$('dob').value=data.profile.dob||'';$('logDate').value=today();$('logTime').value=new Date().toTimeString().slice(0,5);render();updateLogFields();renderCustomExtra();updateAge()}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function saveProfile(){data.profile.name=$('babyName').value.trim();data.profile.dob=$('dob').value;persist();updateAge();alert('Profile saved on this device.')}
+function updateAge(){const d=data.profile.dob;if(!d){$('ageText').textContent='Add a date of birth to calculate age automatically.';return}let birth=new Date(d+'T12:00:00'),now=new Date();if(birth>now){$('ageText').textContent='Please check the date of birth.';return}let months=(now.getFullYear()-birth.getFullYear())*12+now.getMonth()-birth.getMonth();if(now.getDate()<birth.getDate())months--;let anchor=new Date(birth);anchor.setMonth(anchor.getMonth()+months);let days=Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-new Date(anchor.getFullYear(),anchor.getMonth(),anchor.getDate()))/86400000);$('ageText').textContent=(data.profile.name?data.profile.name+' is ':'Baby is ')+(months>=12?Math.floor(months/12)+' year(s), '+months%12+' month(s)':months+' month(s)')+' and '+Math.max(0,days)+' day(s) old.'}
+function showTab(tab){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));$(tab).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));render()}
+const fields={
+ Feed:[['feedType','Feeding type','select',['Breastfeeding','Bottle milk','Formula','Other']],['duration','Duration (minutes)','number'],['amount','Amount (ml, if applicable)','number']],
+ Diaper:[['diaperType','Diaper type','select',['Wet','Dirty','Wet + dirty','Dry']]],
+ Medicine:[['medicineName','Medicine name','text'],['dose','Dose as prescribed','text'],['medicineNotes','Prescription / instructions note','text']],
+ Bath:[['bathType','Bath type','select',['Full bath','Sponge bath','Other']]],
+ Measurement:[['weight','Weight (kg)','number'],['height','Length / height (cm)','number'],['head','Head circumference (cm)','number']]
+};
+function updateLogFields(){const type=$('logType').value;let arr=fields[type]||[];$('dynamicFields').innerHTML=arr.map(([id,label,type,opts])=>`<label for="${id}">${label}</label>`+(type==='select'?`<select id="${id}">${opts.map(o=>`<option>${o}</option>`).join('')}</select>`:`<input id="${id}" type="${type}" ${type==='number'?'step="any" min="0"':''} placeholder="${label}">`)).join('');}
+function openLog(type){showTab('log');$('logType').value=type;updateLogFields()}
+function saveLog(){const type=$('logType').value;let detail={};(fields[type]||[]).forEach(([id,label,kind])=>{const el=$(id);if(el&&el.value!=='')detail[label]=el.value});data.logs.unshift({id:Date.now(),type,date:$('logDate').value||today(),time:$('logTime').value||'',detail,notes:$('logNotes').value.trim()});$('logNotes').value='';persist();render();alert('Entry saved on this device.')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function detailsText(l){return Object.entries(l.detail||{}).map(([k,v])=>k+': '+v).join(' · ')}
+function render(){const logs=[...data.logs].sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));$('todayCount').textContent=logs.filter(l=>l.date===today()).length;const measurements=logs.filter(l=>l.type==='Measurement');const last=measurements[0];$('latestWeight').textContent=last?.detail?.['Weight (kg)']?last.detail['Weight (kg)']+' kg':'—';$('latestHeight').textContent=last?.detail?.['Length / height (cm)']?last.detail['Length / height (cm)']+' cm':'—';$('recent').innerHTML=logs.slice(0,5).map(logHTML).join('')||'<div class="empty">Your saved entries will appear here.</div>';$('allLogs').innerHTML=logs.map(logHTML).join('')||'<div class="empty">No entries yet. Tap a quick-add button to start.</div>';$('growthList').innerHTML=measurements.map(logHTML).join('')||'<div class="empty">Add a measurement to start your growth history.</div>';$('customList').innerHTML=data.customFields.map(f=>`<div class="customrow"><div><b>${esc(f.name)}</b><div class="hint">${esc(f.type)}${f.options?.length?' · '+esc(f.options.join(', ')):''}</div></div><button class="smallbtn" onclick="removeCustom(${f.id})">Remove</button></div>`).join('')||'<div class="empty">No custom fields yet.</div>';updateAge()}
+function logHTML(l){return `<div class="item"><div class="itemtop"><b>${esc(l.type)}</b><span class="pill">${esc(l.date)} ${esc(l.time)}</span></div>${detailsText(l)?`<div>${esc(detailsText(l))}</div>`:''}${l.notes?`<small>${esc(l.notes)}</small>`:''}<div style="text-align:right"><button class="smallbtn" onclick="deleteLog(${l.id})">Delete</button></div></div>`}
+function deleteLog(id){if(confirm('Delete this entry?')){data.logs=data.logs.filter(l=>l.id!==id);persist()}}
+function renderCustomExtra(){const t=$('customType').value;$('customExtra').innerHTML=t==='choice'?'<label for="choiceOptions">Options (separate with commas)</label><input id="choiceOptions" placeholder="e.g. Easy, Fussy, Settled">':(t==='number'||t==='duration')?'<label for="customUnit">Unit (optional)</label><input id="customUnit" placeholder="e.g. °C, minutes, ml">':''}
+$('customType').addEventListener('change',renderCustomExtra);
+function addCustomField(){const name=$('customName').value.trim();if(!name){alert('Please enter a field name.');return}if(data.customFields.some(f=>f.name.toLowerCase()===name.toLowerCase())){alert('A field with that name already exists.');return}const type=$('customType').value;const options=type==='choice'?($('choiceOptions')?.value||'').split(',').map(x=>x.trim()).filter(Boolean):[];data.customFields.push({id:Date.now(),name,type,unit:$('customUnit')?.value||'',options});$('customName').value='';persist();alert('Custom field added. In this starter version, field definitions are saved; a dedicated custom-entry form is the next enhancement.')}
+function removeCustom(id){if(confirm('Remove this custom field definition? Existing daily logs are not changed.')){data.customFields=data.customFields.filter(f=>f.id!==id);persist()}}
+function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});downloadBlob(blob,'little-moments-backup.json')}
+function downloadCSV(){const rows=[['Type','Date','Time','Details','Notes'],...data.logs.map(l=>[l.type,l.date,l.time,detailsText(l),l.notes||''])];const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');downloadBlob(new Blob([csv],{type:'text/csv'}),'little-moments-entries.csv')}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function importData(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.profile||!Array.isArray(d.logs)||!Array.isArray(d.customFields))throw Error();if(confirm('Replace current app data with this backup?')){data=d;persist();$('babyName').value=data.profile.name||'';$('dob').value=data.profile.dob||'';alert('Backup restored.')}}catch(err){alert('This file does not look like a Little Moments backup.')}e.target.value=''};r.readAsText(file)}
+function clearData(){if(confirm('This permanently deletes the data saved in this browser. Export a backup first if you need one.')){localStorage.removeItem(KEY);data={profile:{name:'',dob:''},logs:[],customFields:[]};$('babyName').value='';$('dob').value='';persist()}}
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+load();
+</script>
+</body>
+</html>
