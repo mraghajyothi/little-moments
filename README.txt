@@ -1,21 +1,32 @@
-Little Moments — Smart Dashboard Upgrade
+Little Moments — Feeding & Sleep Tracker Upgrade
 
 What's included
-- Balanced smart dashboard with today's date and activity timeline.
-- Latest weight and length/height, measurement dates, and a quick weight trend chart.
-- Vaccination, doctor appointment, and other reminders with date, optional time, notes, and delete controls.
-- Existing Growth, Add a record, History, Profile & backup tabs retained.
-- Existing mint/cream colors and the included icon-512.png retained.
-- Existing browser-saved profile and records are loaded using the same storage key. Reminders are saved locally alongside them and included in JSON backups.
+- New Feeding & Sleep tab with daily and 7-day summaries.
+- Breastfeeding logs: left/right/both side and duration in minutes.
+- Bottle / expressed breast milk / formula logs: milk type and quantity in ml.
+- Solids logs: food name and optional amount (use only when appropriate for your baby's age and your paediatrician's advice).
+- Sleep logs: nap or night sleep, start time, end time, and automatic duration calculation (including overnight spans).
+- Quick “Log a feed” and “Log sleep” shortcuts.
+- Existing Smart Dashboard, Growth, Add a record, History, reminders, profile, backup/restore, mint/cream styling and icon retained.
+- Existing localStorage key and data structure retained; existing records are not intentionally migrated, cleared, or overwritten. New fields are added only to newly saved feeding/sleep records.
+- Service worker cache updated to little-moments-v5.
 
-Install/update
-1. Unzip this archive.
-2. Upload/replace the files in the root of your existing GitHub Pages repository. Keep icon-512.png.
-3. Commit the changes and wait for GitHub Pages to publish.
-4. Reopen the app. If the old version remains cached, fully close and reopen it or refresh the site once online.
+IMPORTANT BEFORE UPDATING
+1. Open your currently working Little Moments app.
+2. Go to Profile & backup → Export backup (JSON).
+3. Keep that backup file safe before replacing website files.
+4. Do not clear Safari website data or uninstall the app during this update.
 
-Important notes
-- Data is stored in this browser on this device; it is not automatically synced to the cloud.
-- Reminders appear inside the app. They do not send push notifications or alarms to your phone.
-- Growth charts show your own recorded measurements and are not WHO percentile calculations or medical advice.
-- Export a JSON backup before clearing browser data or changing devices.
+Install/update on GitHub Pages
+1. Download and unzip this package.
+2. Open your GitHub repository: mraghajyothi/little-moments, branch main.
+3. Upload the files inside this ZIP directly into the repository root (same level as the existing index.html). Do not upload a containing folder.
+4. Replace index.html and sw.js when GitHub asks; keep manifest.webmanifest and icon-512.png.
+5. Commit the changes to main and wait for GitHub Pages to publish.
+6. Open the site in Safari and refresh. Then close and reopen the installed app.
+
+Data and privacy
+- Existing records remain stored locally in the browser on this device. They are not automatically synced to the cloud.
+- This update keeps the existing storage key (littleMomentsDataV2). Still, export a JSON backup first as a precaution.
+- Reminders appear inside the app; they do not send push notifications or alarms to your phone.
+- Feeding and sleep summaries reflect only entries you log. They are personal tracking summaries, not medical targets or medical advice.
