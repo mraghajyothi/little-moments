@@ -1,6 +1,9 @@
-Little Moments — Feeding & Sleep Tracker Upgrade
+Little Moments — Soft Minimal + Modern Smart Dashboard Upgrade
 
 What's included
+- Refreshed Home dashboard with a soft minimal, modern smart layout, baby welcome panel, quick actions and compact summary tiles.
+- Existing dashboard sections, navigation, growth charts, reminders, recent moments and all tracker features retained.
+
 - New Feeding & Sleep tab with daily and 7-day summaries.
 - Breastfeeding logs: left/right/both side and duration in minutes.
 - Bottle / expressed breast milk / formula logs: milk type and quantity in ml.
@@ -9,7 +12,7 @@ What's included
 - Quick “Log a feed” and “Log sleep” shortcuts.
 - Existing Smart Dashboard, Growth, Add a record, History, reminders, profile, backup/restore, mint/cream styling and icon retained.
 - Existing localStorage key and data structure retained; existing records are not intentionally migrated, cleared, or overwritten. New fields are added only to newly saved feeding/sleep records.
-- Service worker cache updated to little-moments-v5.
+- Service worker cache updated to little-moments-v6.
 
 IMPORTANT BEFORE UPDATING
 1. Open your currently working Little Moments app.

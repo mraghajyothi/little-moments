@@ -17,21 +17,72 @@ main{max-width:760px;margin:auto;padding:14px}.tabs{display:flex;gap:8px;overflo
 .inline-note{font-size:12px;color:#62776c;margin-top:6px;line-height:1.45}
 
 @media(max-width:480px){.grid{grid-template-columns:1fr}.metric{padding:10px}.full{grid-column:auto}}
+
+/* Soft Minimal + Modern Smart Dashboard refresh */
+:root{--mint:#e4f1e9;--deep:#315f51;--cream:#fbf8ef;--ink:#263b34;--pink:#f7e8e4;--line:#e5ece6}
+body{background:#f6f8f5;color:var(--ink);letter-spacing:.005em}
+.brand-header{display:flex;align-items:center;justify-content:center;gap:12px;text-align:left;padding:18px 20px 17px;background:linear-gradient(120deg,#e4f1e9 0%,#f5f3e9 100%);border-radius:0 0 26px 26px;position:relative}
+.brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:#fffaf0;color:#b78c64;font-size:27px;box-shadow:0 4px 14px #315f5112}
+.brand-copy h1{font-size:21px;letter-spacing:-.5px}
+.brand-copy p{margin:3px 0 0;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:#718579}
+.brand-sparkle{position:absolute;right:22px;top:18px;color:#c7a66f;font-size:17px}
+main{max-width:780px;padding:17px 15px 30px}
+.tabs{gap:7px;padding:3px 0 15px;scrollbar-width:none}
+.tabs button{border:1px solid #e3ebe4;background:#fff;color:#587365;padding:10px 14px;border-radius:13px;font-size:12px;box-shadow:0 2px 8px #244b3610}
+.tabs button.active{background:#315f51;color:#fff;border-color:#315f51;box-shadow:0 4px 12px #315f5126}
+.dashboard-hero{min-height:142px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;padding:22px;margin:0 0 14px;border-radius:23px;background:linear-gradient(115deg,#e4f1e9 0%,#f7f2e7 100%);border:1px solid #e4eee6}
+.hero-copy{position:relative;z-index:1}.eyebrow{font-size:9px;font-weight:800;letter-spacing:1.7px;color:#7b9484}
+.dashboard-hero h2{font-size:23px;line-height:1.2;margin:8px 0 5px;color:#315f51;letter-spacing:-.6px}
+.dashboard-hero .leaf{color:#b59b70;font-size:17px}.hero-age{font-size:13px;color:#5f7569}.hero-date{font-size:11px;color:#8a9a8f;margin:10px 0 0}
+.hero-art{width:88px;height:88px;flex:0 0 88px;border-radius:50% 50% 45% 50%;display:grid;place-items:center;background:#fffaf0;color:#c6a77a;font-size:50px;box-shadow:0 8px 24px #315f5112;transform:rotate(8deg)}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 13px}
+.quick-action{display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border:1px solid #e6ece6;border-radius:16px;padding:12px 13px;color:#315f51;box-shadow:0 3px 12px #274a3809}
+.quick-icon{width:34px;height:34px;flex:0 0 34px;border-radius:12px;background:#edf5ef;display:grid;place-items:center;font-size:20px}
+.quick-action b{display:block;font-size:12px}.quick-action small{display:block;margin-top:3px;color:#829187;font-size:10px}
+.card{border:1px solid #e8eee8;border-radius:19px;padding:16px;margin-bottom:13px;box-shadow:0 5px 18px #274a3809}
+.card h2{font-size:16px;letter-spacing:-.2px;margin:0 0 12px}
+.dashboard-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:13px}
+.dashboard-stats .metric{min-width:0;background:#fff;border:1px solid #e8eee8;border-radius:16px;padding:13px 10px;box-shadow:0 3px 12px #274a3808}
+.dashboard-stats .metric strong{font-size:19px;letter-spacing:-.4px}
+.dashboard-stats .metric span{font-size:10px;color:#809086;line-height:1.35;display:block;margin-top:4px}
+.dashboard-head{align-items:center}.dashboard-head h2{margin:0}
+#todayTimeline .entry,#recentEntries .entry{padding:11px 0}
+.reminder-form{background:#f7faf6;border:1px solid #edf1eb;border-radius:15px}
+.metric{background:#fbf8ef}.tracker-stat{border-radius:15px}
+button.primary{border-radius:12px;box-shadow:0 4px 10px #315f511a}
+button.secondary,.smallbtn{border-radius:11px}
+input,select,textarea{border-color:#e0e9e1;border-radius:12px}
+.panel{animation:softIn .22s ease-out}
+@keyframes softIn{from{opacity:.65;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){
+ main{padding:13px 12px 26px}
+ .dashboard-hero{min-height:130px;padding:19px;border-radius:20px}
+ .dashboard-hero h2{font-size:21px}
+ .hero-art{width:70px;height:70px;flex-basis:70px;font-size:40px}
+ .dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .quick-actions{gap:8px}.quick-action{padding:10px 9px;gap:8px}
+ .quick-action b{font-size:11px}
+}
+
 </style></head>
 <body>
-<header><h1>♡ Little Moments</h1><p>Little memories, growing every day</p></header>
+<header class="brand-header"><div class="brand-mark">♡</div><div class="brand-copy"><h1>Little Moments</h1><p>Track · Grow · Cherish</p></div><span class="brand-sparkle">✦</span></header>
 <main>
 <div class="tabs">
 <button class="active" data-tab="home">Home</button><button data-tab="feedingSleep">Feeding & Sleep</button><button data-tab="growth">Growth</button><button data-tab="log">Add a record</button><button data-tab="history">History</button><button data-tab="settings">Profile & backup</button>
 </div>
 <section id="home" class="panel active">
-<div class="card"><h2>Welcome, <span id="babyGreeting">little one</span> 🌿</h2><div id="ageLine" class="hint">Add your baby's date of birth in Profile.</div><p class="hint" id="dashboardDate"></p></div>
-<div class="grid">
+<div class="dashboard-hero"><div class="hero-copy"><span class="eyebrow">YOUR LITTLE WORLD</span><h2>Welcome, <span id="babyGreeting">little one</span> <span class="leaf">✿</span></h2><div id="ageLine" class="hero-age hint">Add your baby's date of birth in Profile.</div><p class="hero-date" id="dashboardDate"></p></div><div class="hero-art" aria-hidden="true">♡</div></div>
+<div class="quick-actions">
+<button class="quick-action" id="addTodayRecord"><span class="quick-icon">＋</span><span><b>Add a moment</b><small>Save a little memory</small></span></button>
+<button class="quick-action" id="openGrowth"><span class="quick-icon">↗</span><span><b>View growth</b><small>See the latest progress</small></span></button>
+</div>
+<div class="grid dashboard-stats">
 <div class="metric"><strong id="lastWeight">—</strong><span>Latest weight</span></div><div class="metric"><strong id="lastHeight">—</strong><span>Latest length / height</span></div>
 <div class="metric"><strong id="feedCount">0</strong><span>Feed records today</span></div><div class="metric"><strong id="diaperCount">0</strong><span>Diaper records today</span></div>
 </div>
-<div class="card"><div class="dashboard-head"><h2>Today's timeline</h2><button class="secondary" id="addTodayRecord">＋ Add moment</button></div><div id="todayTimeline" class="hint">Today's activity will appear here.</div></div>
-<div class="card"><div class="dashboard-head"><h2>Growth at a glance 📈</h2><button class="secondary" id="openGrowth">View growth</button></div><div class="grid"><div class="metric"><strong id="dashWeight">—</strong><span>Latest weight</span><div id="dashWeightDate" class="hint"></div></div><div class="metric"><strong id="dashHeight">—</strong><span>Latest length / height</span><div id="dashHeightDate" class="hint"></div></div></div><label>Quick growth trend</label><div id="dashboardChart" class="chartwrap mini-chart"></div><div id="dashboardGrowthHint" class="hint"></div></div>
+<div class="card"><div class="dashboard-head"><h2>Today's timeline</h2></div><div id="todayTimeline" class="hint">Today's activity will appear here.</div></div>
+<div class="card"><div class="dashboard-head"><h2>Growth at a glance 📈</h2></div><div class="grid"><div class="metric"><strong id="dashWeight">—</strong><span>Latest weight</span><div id="dashWeightDate" class="hint"></div></div><div class="metric"><strong id="dashHeight">—</strong><span>Latest length / height</span><div id="dashHeightDate" class="hint"></div></div></div><label>Quick growth trend</label><div id="dashboardChart" class="chartwrap mini-chart"></div><div id="dashboardGrowthHint" class="hint"></div></div>
 <div class="card"><div class="dashboard-head"><h2>Vaccinations & appointments</h2><span class="pill" id="reminderCount">0 reminders</span></div><div id="reminderList"></div><div class="reminder-form"><strong>Add a reminder</strong><label>Reminder type</label><select id="reminderType"><option value="Vaccination">Vaccination</option><option value="Appointment">Doctor appointment</option><option value="Other">Other</option></select><label>Title</label><input id="reminderTitle" placeholder="e.g. Next vaccination"><div class="grid"><div><label>Date</label><input id="reminderDate" type="date"></div><div><label>Time (optional)</label><input id="reminderTime" type="time"></div></div><label>Notes (optional)</label><input id="reminderNotes" placeholder="Clinic, dose, or preparation notes"><button class="primary" id="saveReminder">Save reminder</button><p id="reminderStatus" class="hint"></p></div></div>
 <div class="card"><h2>Recent moments</h2><div id="recentEntries" class="hint">Your saved records will appear here.</div></div>
 <div class="notice">Little Moments is a personal tracking tool, not a medical device. For growth concerns, discuss your baby's measurements with a paediatrician.</div>

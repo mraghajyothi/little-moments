@@ -1,4 +1,4 @@
-const CACHE = 'little-moments-v5';
+const CACHE = 'little-moments-v6';
 const ASSETS = [
   './',
   './index.html',
